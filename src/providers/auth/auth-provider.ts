@@ -3,6 +3,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 import * as firebase from 'firebase/app';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable()
 export class AuthProvider {
@@ -89,23 +90,32 @@ export class AuthProvider {
 
 
     let authMap = this.afAuth.authState.map((response) => {
-      console.log('response', response);
+      //console.log('response', response);
       let userObject, providerData;
 
       if(response.providerData){ providerData = response.providerData[0]; }
 
-      userObject = {
-        'email': response.email || providerData.email,
-        'displayName': response.displayName || providerData.displayName,
-        'uid': response.uid || providerData.uid,
-        'avatar': response.photoURL || providerData.photoURL,
-        'providerId': response.providerId || providerData.providerId,
-        'emailVerified': response.emailVerified,
-        'isAnonymous': response.isAnonymous,
-        'refreshToken': response.refreshToken 
+      let email = providerData.email || response.email;
+
+      let photoUrl = providerData.photoURL || response.photoURL;
+
+      if(!photoUrl){
+        photoUrl = this.getAvatar(email);
+
       }
 
+      userObject = {
+        'email': email,
+        'displayName': providerData.displayName || response.displayName,
+        'uid': response.uid || providerData.uid,
+        'avatar': photoUrl,
+        'providerId': providerData.providerId || response.providerId,
+        'emailVerified': response.emailVerified,
+        'isAnonymous': response.isAnonymous,
+        'refreshToken': response.refreshToken
+      }
 
+      console.log('photoUrl:',userObject.photoURL);
       return userObject;
 
     });
@@ -114,6 +124,18 @@ export class AuthProvider {
  //   return this.afAuth.authState;
 
   };
+
+  getAvatar(email){
+    // put get gravatar logic in here
+    let photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(email);;
+
+
+
+
+
+
+    return photoURL;
+  }
 
   logout() {
     return this.afAuth.auth.signOut();
