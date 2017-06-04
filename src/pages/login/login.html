@@ -37,7 +37,7 @@
 
 <ion-card>
 <ion-card-header>Email Login:</ion-card-header>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+  <form [formGroup]="loginForm" (ngSubmit)="login('email')" novalidate>
     <ion-row>
       <ion-item>
         <ion-label for="email"></ion-label>
