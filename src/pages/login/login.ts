@@ -45,12 +45,6 @@ export class LoginPage {
     });
   }
 
-  submit ()  {
-    this.login ("email");
-  }
-
-
-
   logout(): void {
     this.authProvider.logout();
     console.log(' logged out !');
