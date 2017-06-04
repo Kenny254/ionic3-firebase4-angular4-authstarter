@@ -37,7 +37,7 @@
 
 <ion-card>
 <ion-card-header>Email Login:</ion-card-header>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+  <form [formGroup]="loginForm" (ngSubmit)="login('email')" novalidate>
     <ion-row>
       <ion-item>
         <ion-label for="email"></ion-label>
@@ -51,7 +51,7 @@
       </ion-item>
     </ion-row>
   <ion-row class='email'>
-    <button (click)="login('email')" ion-button block>Submit</button>
+    <button type="submit" ion-button block>Submit</button>
     <span class='reset' ion-text color='danger' [navPush]="resetPasswordPage">Forgot your password? Click here to reset.</span>
   </ion-row>
   </form>
