@@ -88,12 +88,13 @@ export class AuthProvider {
 
   getCurrentUser(){
 
-
+//fails here during logout
+  
     let authMap = this.afAuth.authState.map((response) => {
       //console.log('response', response);
       let userObject, providerData;
 
-      if(response.providerData){ providerData = response.providerData[0]; }
+      if(response.providerData[0]){ providerData = response.providerData[0]; }
 
       let email = providerData.email || response.email;
 
@@ -122,12 +123,12 @@ export class AuthProvider {
 
  return authMap;
  //   return this.afAuth.authState;
-
+  
   };
 
   getAvatar(email){
     // put get gravatar logic in here
-    let photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(email);;
+    let photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(email);
 
 
 

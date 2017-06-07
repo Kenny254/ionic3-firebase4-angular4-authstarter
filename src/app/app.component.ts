@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireAuth} from "angularfire2/auth";
 import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 @Component({
   templateUrl: 'app.html'
@@ -35,11 +35,12 @@ export class MyApp {
 
     auth.authState.subscribe((authState)=>{
       if (authState){
-        console.log('Logged in user :', authState.email);
+        console.log('Logged in user from app.component:', authState);
 
 
         //if I nav to TabsPage here all hell breaks
-        this.nav.setRoot(TabsPage, authState); //pass authState to homepage & nav there
+        //this.nav.setRoot(TabsPage, authState); //pass authState to homepage & nav there
+        this.nav.setRoot(TabsPage); //pass authState to homepage & nav there
       }else{
         this.nav.setRoot(LoginPage);
       }
