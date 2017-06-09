@@ -45,10 +45,7 @@ export class LoginPage {
     });
   }
 
- /* logout(): void {
-    this.authProvider.logout();
-    console.log(' logged out !');
-  }*/
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');

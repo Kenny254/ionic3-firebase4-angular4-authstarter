@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth-provider';
-//import {Md5} from 'ts-md5/dist/md5';
+
 
 @Component({
   selector: 'page-home',
@@ -25,7 +25,7 @@ export class HomePage {
     //this.userInfo = this.navParams.data;  //this comes fromm app.component
   }
 
-  logout(): void {
+  logoutFromHome(): void {
     this.authProvider.logout();
     console.log('logged out!');
   }
@@ -59,6 +59,7 @@ export class HomePage {
   ionViewWillLeave(){
     // this is an Ionic method that will fire each time BEFORE the user leaves the page
     console.log('ionViewWillLeave - Home Page');
+    this.myUser.unsubscribe;
   }
 
   ionViewDidUnload(){
