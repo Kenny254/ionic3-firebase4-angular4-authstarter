@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth-provider';
 import { ResetPasswordPage } from '../reset-password/reset-password';
@@ -21,7 +21,7 @@ export class LoginPage {
 
   constructor(
     public nav: NavController,
-    public navParams: NavParams,
+    //public navParams: NavParams,
     public authProvider: AuthProvider,
     public fb: FormBuilder
   ){

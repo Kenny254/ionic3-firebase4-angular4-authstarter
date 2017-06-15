@@ -16,6 +16,9 @@ import {ResetPasswordPage} from '../pages/reset-password/reset-password';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { UserdataProvider } from '../providers/userdata/userdata';
+
+
 
 
 export const firebaseConfig = {
@@ -58,7 +61,9 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    UserdataProvider
+
   ]
 })
 export class AppModule {}

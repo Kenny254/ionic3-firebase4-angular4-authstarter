@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth-provider';
+import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -9,12 +10,8 @@ import { AuthProvider } from '../../providers/auth/auth-provider';
 })
 export class HomePage {
   myUser: any;
-  user: any;
-  //email: any;
-  //password: any;
-  //providerId: any;
-  //photoURL: string;
-  //uid: any;
+  public user: any;
+
 
   constructor(
     public authProvider: AuthProvider,
@@ -22,12 +19,16 @@ export class HomePage {
     //public navParams: NavParams
     )
   {
-    //this.userInfo = this.navParams.data;  //this comes fromm app.component
+
+
+
   }
 
   logoutFromHome(): void {
+
     this.authProvider.logout();
     console.log('logged out!');
+
   }
 
   ngOnInit(){
@@ -42,24 +43,29 @@ export class HomePage {
   ionViewDidLoad(){
     // this is an Ionic method that will fire ONCE after the page is loaded the first time
     // No guarantee this will fire, if its cached it will use that.
-    console.log('ionViewDidLoad - Home Page');
-    // this is the magic code :D
-    this.myUser = this.authProvider.getCurrentUser();
-    this.myUser.subscribe(user => {
-      console.log(user);
-      this.user = user;
-    });
+
   }
 
   ionViewWillEnter(){
   // this is an Ionic method that will fire each time BEFORE the page is loaded
+
+    console.log('ionViewDidLoad - Home Page');
+    // this is the magic code :D
+
+    //myUser is an observable
+    this.myUser = this.authProvider.getCurrentUser(); //null if not logged in
+
+    //this.myUser.subscribe(user => {
+     // console.log(user);
+      this.user = this.myUser;
+    //});
 
   }
 
   ionViewWillLeave(){
     // this is an Ionic method that will fire each time BEFORE the user leaves the page
     console.log('ionViewWillLeave - Home Page');
-    this.myUser.unsubscribe;
+    //this.myUser.unsubscribe();
   }
 
   ionViewDidUnload(){

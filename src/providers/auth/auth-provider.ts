@@ -70,7 +70,7 @@ export class AuthProvider {
     return Observable.create(observer => {
       this.afAuth.auth.createUserWithEmailAndPassword(email,password).then ((authData) => {
         observer.next(authData);
-      }, function(error){
+      }).catch (error => {
         observer.error(error);
       });
     });
@@ -80,21 +80,53 @@ export class AuthProvider {
     return Observable.create(observer => {
       this.afAuth.auth.sendPasswordResetEmail(emailAddress).then (function(success) {
         observer.next(success);
-      }, function(error){
+      }).catch (error => {
         observer.error(error);
       });
     });
   };
 
-  getCurrentUser(){
+  getCurrentUser() {
+
+      return this.afAuth.auth.currentUser
+
+
+
+
+
+
+    //return this.afAuth.auth.currentUser
+
+  };
 
 //fails here during logout
-  
+getUserObject() {
+
+
+
+  //get an auth instance and map the userObject
+  // This will be used as a homogenous user object that can be then used for
+  // passing around components or writing to firebase db/storage.
+  //we will need to provide an observable here for that
+
+
+
+console.log('getting current user');
+
+
+
+
+
     let authMap = this.afAuth.authState.map((response) => {
       //console.log('response', response);
+
+      if(response){ // If there is a user logged in
+console.log(response);
+
+
       let userObject, providerData;
 
-      if(response.providerData[0]){ providerData = response.providerData[0]; }
+      if(response.providerData){ providerData = response.providerData[0]; }
 
       let email = providerData.email || response.email;
 
@@ -114,31 +146,30 @@ export class AuthProvider {
         'emailVerified': response.emailVerified,
         'isAnonymous': response.isAnonymous,
         'refreshToken': response.refreshToken
-      }
+      };
 
-      console.log('photoUrl:',userObject.photoURL);
+      //console.log('photoUrl:',userObject.photoURL);
       return userObject;
-
+    } else { // if there is no logged in user, return null.
+      return null;
+    }
     });
 
  return authMap;
  //   return this.afAuth.authState;
-  
+
   };
 
   getAvatar(email){
     // put get gravatar logic in here
     let photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(email);
 
-
-
-
-
-
     return photoURL;
   }
+
 
   logout() {
     return this.afAuth.auth.signOut();
   };
 }
+

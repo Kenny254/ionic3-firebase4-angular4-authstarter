@@ -11,9 +11,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  //rootPage:any = TabsPage;
+
   rootPage = LoginPage;
-  //nav:Nav;
+
   constructor(
     public platform: Platform,
     private statusBar: StatusBar,
@@ -33,16 +33,19 @@ export class MyApp {
      We'll subscribe to it so we are notified whenever the authState has changed.
      */
 
-    auth.authState.subscribe((authState)=>{
+    const authObserver = auth.authState.subscribe((authState)=>{
       if (authState){
         console.log('Logged in user from app.component:', authState);
 
 
-        //if I nav to TabsPage here all hell breaks
-        //this.nav.setRoot(TabsPage, authState); //pass authState to homepage & nav there
+
+
         this.nav.setRoot(TabsPage); //pass authState to homepage & nav there
+        //authObserver.unsubscribe();
       }else{
+
         this.nav.setRoot(LoginPage);
+        //authObserver.unsubscribe();
       }
     });
 
