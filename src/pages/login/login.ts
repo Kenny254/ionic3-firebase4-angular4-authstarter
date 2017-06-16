@@ -5,7 +5,6 @@ import { AuthProvider } from '../../providers/auth/auth-provider';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import {SignupPage} from '../signup/signup';
 
-
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -25,7 +24,6 @@ export class LoginPage {
     public authProvider: AuthProvider,
     public fb: FormBuilder
   ){
-
     this.loginForm = this.fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.pattern(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])]
@@ -35,7 +33,11 @@ export class LoginPage {
   };
 
   login(method){
+    //subscribe to the observable produced by the login mmethod, and capture the result
+    //that is emitted
     this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{
+      //this fires once observable completes
+      console.log('login observer fired on data:');
       console.log(data);
     }, error=>{
       console.log(error);
@@ -44,8 +46,6 @@ export class LoginPage {
       }
     });
   }
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');

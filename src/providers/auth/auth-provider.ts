@@ -20,7 +20,7 @@ export class AuthProvider {
     if (method === 'facebook') {
       return Observable.create(observer => {
         this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((authData) => {
-          observer.next(authData);
+          observer.next(authData); //emit authData
         }).catch((error) => {
           observer.error(error);
         });
@@ -86,20 +86,15 @@ export class AuthProvider {
     });
   };
 
-  getCurrentUser() {
+  /*getCurrentUser() {
 
-      return this.afAuth.auth.currentUser
-
-
-
-
-
-
-    //return this.afAuth.auth.currentUser
+    console.log('getting current user');
+      //return this.afAuth.auth.currentUser
+        return this.afAuth.authState
 
   };
 
-//fails here during logout
+
 getUserObject() {
 
 
@@ -111,19 +106,13 @@ getUserObject() {
 
 
 
-console.log('getting current user');
+  console.log('getting current user object');
 
-
-
-
-
-    let authMap = this.afAuth.authState.map((response) => {
+    let authMap = this.afAuth.authState.map((response)=> {
       //console.log('response', response);
 
       if(response){ // If there is a user logged in
-console.log(response);
-
-
+        //console.log(response);
       let userObject, providerData;
 
       if(response.providerData){ providerData = response.providerData[0]; }
@@ -138,10 +127,10 @@ console.log(response);
       }
 
       userObject = {
-        'email': email,
+        'email': providerData.email || response.email,
         'displayName': providerData.displayName || response.displayName,
         'uid': response.uid || providerData.uid,
-        'avatar': photoUrl,
+        'avatar': providerData.photoURL || response.photoURL,
         'providerId': providerData.providerId || response.providerId,
         'emailVerified': response.emailVerified,
         'isAnonymous': response.isAnonymous,
@@ -165,7 +154,7 @@ console.log(response);
     let photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(email);
 
     return photoURL;
-  }
+  }*/
 
 
   logout() {

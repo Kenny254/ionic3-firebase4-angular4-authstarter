@@ -2,33 +2,28 @@ import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth-provider';
 import {Observable} from "rxjs/Observable";
-
+import {UserProvider} from '../../providers/user/user';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  myUser: any;
+  public myUser: any;
   public user: any;
 
 
   constructor(
     public authProvider: AuthProvider,
-    private nav: NavController,
-    //public navParams: NavParams
+    public userProvider: UserProvider,
+    private nav: NavController
     )
   {
-
-
-
-  }
+  };
 
   logoutFromHome(): void {
-
     this.authProvider.logout();
     console.log('logged out!');
-
   }
 
   ngOnInit(){
@@ -43,35 +38,30 @@ export class HomePage {
   ionViewDidLoad(){
     // this is an Ionic method that will fire ONCE after the page is loaded the first time
     // No guarantee this will fire, if its cached it will use that.
+    console.log('ionViewDidLoad - Home Page');
+    // this is the magic code :D
 
+    //myUser is an observable
+    this.myUser = this.userProvider.getUserObject(); //null if not logged in
+    console.log('just got getCurrentUser');
+    this.myUser.subscribe(user => {
+     // console.log(user);
+      this.user = user;
+    });
   }
 
   ionViewWillEnter(){
   // this is an Ionic method that will fire each time BEFORE the page is loaded
 
-    console.log('ionViewDidLoad - Home Page');
-    // this is the magic code :D
-
-    //myUser is an observable
-    this.myUser = this.authProvider.getCurrentUser(); //null if not logged in
-
-    //this.myUser.subscribe(user => {
-     // console.log(user);
-      this.user = this.myUser;
-    //});
-
   }
 
   ionViewWillLeave(){
     // this is an Ionic method that will fire each time BEFORE the user leaves the page
-    console.log('ionViewWillLeave - Home Page');
+    //console.log('ionViewWillLeave - Home Page');
     //this.myUser.unsubscribe();
   }
 
   ionViewDidUnload(){
     // this is an Ionic method that will fire each time AFTER the user leaves the page
   }
-
-
-
 }
