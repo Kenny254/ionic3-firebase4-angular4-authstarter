@@ -1,10 +1,18 @@
+/************************************************************************
+ * Ionic-3 Firebase-3 Angular-4 Authentication Boilerplate
+ * K.Brennan IDEwerks @6/2017
+ * idewerks@gmail.com
+ * @idewerks_kevin
+ * http://blog.idewerks.com
+ *
+ ***********************************************************************/
+
 import { Component, ViewChild } from '@angular/core';
 import {Platform, Nav, NavController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireAuth} from "angularfire2/auth";
 import { LoginPage } from '../pages/login/login';
-//import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { Observable } from "rxjs/Observable";

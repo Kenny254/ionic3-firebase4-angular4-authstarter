@@ -1,6 +1,15 @@
+/************************************************************************
+ * Ionic-3 Firebase-3 Angular-4 Authentication Boilerplate
+ * K.Brennan IDEwerks @6/2017
+ * idewerks@gmail.com
+ * @idewerks_kevin
+ * http://blog.idewerks.com
+ *
+ ***********************************************************************/
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Loading } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth-provider';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import {SignupPage} from '../signup/signup';
@@ -12,8 +21,8 @@ import {SignupPage} from '../signup/signup';
 })
 export class LoginPage {
   loginForm: FormGroup;
-  email: any;
-  password: any;
+  email: AbstractControl;
+  password: AbstractControl;
   error: any;
   signupPage = SignupPage;
   resetPasswordPage = ResetPasswordPage; //Added reset password page
@@ -62,4 +71,5 @@ export class LoginPage {
   }
 
 }
+
 

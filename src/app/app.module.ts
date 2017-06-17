@@ -1,3 +1,12 @@
+/************************************************************************
+ * Ionic-3 Firebase-3 Angular-4 Authentication Boilerplate
+ * K.Brennan IDEwerks @6/2017
+ * idewerks@gmail.com
+ * @idewerks_kevin
+ * http://blog.idewerks.com
+ *
+ ***********************************************************************/
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';

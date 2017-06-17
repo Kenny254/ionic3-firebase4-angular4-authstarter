@@ -1,3 +1,12 @@
+/************************************************************************
+ * Ionic-3 Firebase-3 Angular-4 Authentication Boilerplate
+ * K.Brennan IDEwerks @6/2017
+ * idewerks@gmail.com
+ * @idewerks_kevin
+ * http://blog.idewerks.com
+ *
+ ***********************************************************************/
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Loading } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -48,6 +57,8 @@ export class SignupPage {
       });
       this.loading = this.loadingCtrl.create({
         dismissOnPageChange: true,
+        content: 'Creating new User...',
+        showBackdrop: false
       });
       this.loading.present();
     }

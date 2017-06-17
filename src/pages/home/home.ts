@@ -1,3 +1,12 @@
+/************************************************************************
+ * Ionic-3 Firebase-3 Angular-4 Authentication Boilerplate
+ * K.Brennan IDEwerks @6/2017
+ * idewerks@gmail.com
+ * @idewerks_kevin
+ * http://blog.idewerks.com
+ *
+ ***********************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth-provider';
@@ -19,6 +28,19 @@ export class HomePage {
     private nav: NavController
     )
   {
+
+    //myUser is an observable
+    this.myUser = this.userProvider.getUserObject(); //null if not logged in
+    console.log('just got getCurrentUser');
+    this.myUser.subscribe(user => {
+      // console.log(user);
+      this.user = user;
+    });
+
+
+
+
+
   };
 
   logoutFromHome(): void {
@@ -41,13 +63,7 @@ export class HomePage {
     console.log('ionViewDidLoad - Home Page');
     // this is the magic code :D
 
-    //myUser is an observable
-    this.myUser = this.userProvider.getUserObject(); //null if not logged in
-    console.log('just got getCurrentUser');
-    this.myUser.subscribe(user => {
-     // console.log(user);
-      this.user = user;
-    });
+
   }
 
   ionViewWillEnter(){
