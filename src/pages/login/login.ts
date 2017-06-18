@@ -43,31 +43,29 @@ export class LoginPage {
   };
 
 
-   login(method): void {
+  login(method): void {
 
-   if (!this.loginForm.valid){
-    console.log(this.loginForm.value);
-    } else {
-      this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{
-        //Successfully logged in user
-        console.log(data);
-        this.loading.dismiss();
-        console.log('User is logged in.');
-       }, error => {
-        //error has occurred with login
-        console.log(error);
-        this.loading.dismiss();
-        {alert(error.message)};
-        this.error = error;
+    this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{
+      //Successfully logged in user
+      console.log(data);
+      this.loading.dismiss();
+      console.log('User is logged in.');
+    }, error => {
 
-      });
-      this.loading = this.loadingCtrl.create({
+      //error has occurred with login
+      console.log(error);
+      this.loading.dismiss();
+      {alert(error.message)}
+      this.error = error;
+    });
+
+    this.loading = this.loadingCtrl.create({
       dismissOnPageChange: true,
       content: 'Logging in user',
       showBackdrop: false
-      });
+    });
     this.loading.present();
-   }
+
   }
 
   ionViewDidLoad() {
