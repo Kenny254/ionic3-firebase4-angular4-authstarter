@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth-provider';
 import {Observable} from "rxjs/Observable";
-import {UserProvider} from '../../providers/user/user';
+import {UserProvider} from '../../providers/user/user-provider';
 
 @Component({
   selector: 'page-home',
@@ -36,12 +36,7 @@ export class HomePage {
       // console.log(user);
       this.user = user;
     });
-
-
-
-
-
-  };
+ };
 
   logoutFromHome(): void {
     this.authProvider.logout();
@@ -62,8 +57,6 @@ export class HomePage {
     // No guarantee this will fire, if its cached it will use that.
     console.log('ionViewDidLoad - Home Page');
     // this is the magic code :D
-
-
   }
 
   ionViewWillEnter(){

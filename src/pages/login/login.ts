@@ -42,28 +42,32 @@ export class LoginPage {
     this.password = this.loginForm.controls['password'];
   };
 
-  login(method){
-    //subscribe to the observable produced by the login mmethod, and capture the result
-    //that is emitted
-    this.loading = this.loadingCtrl.create({
-      dismissOnPageChange: true,
-      content: 'Logging into Data Service...',
-      showBackdrop: false
 
-    });
-    this.loading.present();
-    this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{
-      //this fires once observable completes
-      console.log('login observer fired on data:');
-      console.log(data);
-      this.loading.dismiss();
-    }, error=>{
-      console.log(error);
-      if (error.code == 'auth/user-not-found') {
-        alert('User not found');
+   login(method): void {
+
+   if (!this.loginForm.valid){
+    console.log(this.loginForm.value);
+    } else {
+      this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{
+        //Successfully logged in user
+        console.log(data);
         this.loading.dismiss();
-      }
-    });
+        console.log('User is logged in.');
+       }, error => {
+        //error has occurred with login
+        console.log(error);
+        this.loading.dismiss();
+        {alert(error.message)};
+        this.error = error;
+
+      });
+      this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
+      content: 'Logging in user',
+      showBackdrop: false
+      });
+    this.loading.present();
+   }
   }
 
   ionViewDidLoad() {

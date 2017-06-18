@@ -14,7 +14,7 @@ import { MyApp } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider} from '../providers/auth/auth-provider';
-import { UserProvider} from '../providers/user/user'
+import { UserProvider} from '../providers/user/user-provider'
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
