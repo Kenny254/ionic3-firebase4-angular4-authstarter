@@ -1,9 +1,15 @@
+/************************************************************************
+ * Ionic-3 Firebase-3 Angular-4 Authentication Boilerplate
+ * K.Brennan IDEwerks @6/2017
+ * idewerks@gmail.com
+ * @idewerks_kevin
+ * http://blog.idewerks.com
+ *
+ ***********************************************************************/
+
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {
-  AngularFireDatabase,
-  FirebaseListObservable,
-  FirebaseObjectObservable } from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthProvider } from '../../providers/auth/auth-provider';
 import {UserProvider} from '../../providers/user/user-provider';
@@ -23,6 +29,7 @@ export class FiredataProvider {
     this.user.subscribe((user) => {
       if (user) {
         //valid formatted user object here
+        /*todo Add a more elegant way to write the user object  */
         this.afDatabase.object(`userProfile/${user.uid}`).update({
           displayName: user.displayName,
           email: user.email,

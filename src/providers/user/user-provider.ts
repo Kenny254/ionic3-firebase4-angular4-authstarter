@@ -24,28 +24,24 @@ export class UserProvider {
   };
 
   getUserObject() {
-    //get an auth observer and map the userObject
+    //return an observable of formatted user state
     // This will be used as a homogenous user object that can be then used for
     // passing around components or writing to firebase db/storage.
     //we will need to provide an observable here for that
 
-    //console.log('getting current user object');
     let authMap = this.afAuth.authState.map((response)=> {
       if(response){ // If there is a user logged in
         let userObject, providerData;
 
         if(response.providerData){ providerData = response.providerData[0]; }
         let email = providerData.email || response.email;
-        let photoUrl = providerData.photoURL || response.photoURL;
-        if(!photoUrl){
-          photoUrl = this.getAvatar(email); //if no avatar, try to get one from email
-        }
+
         //Lets cherry pick the user information, and create a new user object with that info.
         userObject = {
           'email': providerData.email || response.email,
           'displayName': providerData.displayName || response.displayName,
           'uid': response.uid || providerData.uid,
-          'avatar': providerData.photoURL || response.photoURL,
+          'avatar': providerData.photoURL || response.photoURL || this.getAvatar(email),
           'providerId': providerData.providerId || response.providerId,
           'emailVerified': response.emailVerified,
           'isAnonymous': response.isAnonymous,
