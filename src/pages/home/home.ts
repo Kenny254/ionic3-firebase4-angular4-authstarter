@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth-provider';
-import {Observable} from "rxjs/Observable";
+//import {Observable} from "rxjs/Observable";
 import {UserProvider} from '../../providers/user/user-provider';
 
 @Component({

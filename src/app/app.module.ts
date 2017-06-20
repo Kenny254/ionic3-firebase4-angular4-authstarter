@@ -13,6 +13,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule }  from 'angularfire2/database';
 import { AuthProvider} from '../providers/auth/auth-provider';
 import { UserProvider} from '../providers/user/user-provider'
 import { AboutPage } from '../pages/about/about';
@@ -26,6 +27,7 @@ import {ResetPasswordPage} from '../pages/reset-password/reset-password';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FiredataProvider } from '../providers/firedata/data-provider';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDKTk6VjHbMofnmH_oUOaAbU1hQxoxQSA0",
@@ -50,7 +52,8 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,7 +71,8 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    UserProvider
+    UserProvider,
+    FiredataProvider
   ]
 })
 export class AppModule {}

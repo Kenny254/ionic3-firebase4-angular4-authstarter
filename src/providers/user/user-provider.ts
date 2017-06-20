@@ -24,7 +24,7 @@ export class UserProvider {
   };
 
   getUserObject() {
-    //get an auth instance and map the userObject
+    //get an auth observer and map the userObject
     // This will be used as a homogenous user object that can be then used for
     // passing around components or writing to firebase db/storage.
     //we will need to provide an observable here for that
@@ -37,10 +37,10 @@ export class UserProvider {
         if(response.providerData){ providerData = response.providerData[0]; }
         let email = providerData.email || response.email;
         let photoUrl = providerData.photoURL || response.photoURL;
-
         if(!photoUrl){
-          photoUrl = this.getAvatar(email);
+          photoUrl = this.getAvatar(email); //if no avatar, try to get one from email
         }
+        //Lets cherry pick the user information, and create a new user object with that info.
         userObject = {
           'email': providerData.email || response.email,
           'displayName': providerData.displayName || response.displayName,

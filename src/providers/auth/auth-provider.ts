@@ -72,6 +72,7 @@ export class AuthProvider {
         });
       });
     }
+
   };
 
   //email auth nor new user

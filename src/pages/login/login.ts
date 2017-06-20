@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Loading } from 'ionic-angular';
 import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth-provider';
+import {FiredataProvider}  from '../../providers/firedata/data-provider';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import {SignupPage} from '../signup/signup';
 
@@ -31,6 +32,7 @@ export class LoginPage {
   constructor(
     public nav: NavController,
     public authProvider: AuthProvider,
+    public firedataProvider: FiredataProvider,
     public fb: FormBuilder,
     public loadingCtrl: LoadingController
   ){
@@ -48,6 +50,9 @@ export class LoginPage {
     this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{
       //Successfully logged in user
       console.log(data);
+
+      //need to get a properly formatted user object here to pass to writeUserToDatabase
+      this.firedataProvider.writeUserToDatabase();
       this.loading.dismiss();
       console.log('User is logged in.');
     }, error => {
