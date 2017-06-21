@@ -1,11 +1,65 @@
+<!-- styles on this page from https://ionicframework.com/docs/components/#lists -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+  <!-- This nav bar is not quite right, don't judge me :) -->
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>JabberDawg</ion-title>
   </ion-navbar>
+  <ion-toolbar class="dashboard-header" color='secondary'>
+    <ion-title>
+      About Page
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
 
+  <ion-list *ngIf="user">
+    <ion-list-header>
+      User Information
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar item-left>
+        <img [src]="user?.avatar" alt="">
+      </ion-avatar>
+      <h2>{{ user?.displayName }}</h2>
+      <p>{{ user?.email }}</p>
+
+    </ion-item>
+
+    <ion-item>
+      Display Name is  {{ user?.displayName }}
+    </ion-item>
+    <ion-item>
+      Avatar URL is  {{ user?.avatar }}
+    </ion-item>
+
+    <ion-item>
+      Anonymous is  {{ user?.isAnonymous}}
+    </ion-item>
+
+    <ion-item>
+      Email is  {{ user?.email }}
+    </ion-item>
+
+    <ion-item>
+      Email Verified is  {{ user?.emailVerified }}
+    </ion-item>
+    <ion-item>
+      Provider is  {{ user?.providerId }}
+    </ion-item>
+    <ion-item>
+      User Id is  {{ user?.uid }}
+    </ion-item>
+    <ion-item>
+      Refresh Token is  {{ user?.refreshToken }}
+    </ion-item>
+  </ion-list>
+
+  <!-- <button (click)="navigate('pageName')" ion-button block>Go to Another Page</button> -->
+  <button (click)="logoutFromAbout()" ion-button block round class='button-bottom'>Log out</button>
+
+
 </ion-content>
+<!-- This nav bar is not quite right, don't judge me :) -->

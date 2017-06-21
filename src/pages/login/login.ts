@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Loading } from 'ionic-angular';
 import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth-provider';
-import {FiredataProvider}  from '../../providers/firedata/data-provider';
+import {ProfileDataProvider}  from '../../providers/profile/profile-provider';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import {SignupPage} from '../signup/signup';
 
@@ -32,7 +32,7 @@ export class LoginPage {
   constructor(
     public nav: NavController,
     public authProvider: AuthProvider,
-    public firedataProvider: FiredataProvider,
+    public firedataProvider: ProfileDataProvider,
     public fb: FormBuilder,
     public loadingCtrl: LoadingController
   ){

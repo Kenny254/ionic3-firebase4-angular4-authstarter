@@ -27,7 +27,8 @@ import {ResetPasswordPage} from '../pages/reset-password/reset-password';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FiredataProvider } from '../providers/firedata/data-provider';
+import { ProfileDataProvider } from '../providers/profile/profile-provider';
+import { MessageProvider } from '../providers/message/message-provider';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDKTk6VjHbMofnmH_oUOaAbU1hQxoxQSA0",
@@ -72,7 +73,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     UserProvider,
-    FiredataProvider
+    ProfileDataProvider,
+    MessageProvider
   ]
 })
 export class AppModule {}

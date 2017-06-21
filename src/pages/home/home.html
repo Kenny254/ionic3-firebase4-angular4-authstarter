@@ -17,7 +17,7 @@
 
   <ion-list *ngIf="user">
     <ion-list-header>
-      User Information
+      Current User
     </ion-list-header>
     <ion-item>
       <ion-avatar item-left>
@@ -28,33 +28,7 @@
 
     </ion-item>
 
-    <ion-item>
-      Display Name is  {{ user?.displayName }}
-    </ion-item>
-    <ion-item>
-      Avatar URL is  {{ user?.avatar }}
-    </ion-item>
 
-    <ion-item>
-      Anonymous is  {{ user?.isAnonymous}}
-    </ion-item>
-
-    <ion-item>
-      Email is  {{ user?.email }}
-    </ion-item>
-
-    <ion-item>
-      Email Verified is  {{ user?.emailVerified }}
-    </ion-item>
-    <ion-item>
-      Provider is  {{ user?.providerId }}
-    </ion-item>
-    <ion-item>
-      User Id is  {{ user?.uid }}
-    </ion-item>
-    <ion-item>
-      Refresh Token is  {{ user?.refreshToken }}
-    </ion-item>
   </ion-list>
 
  <!-- <button (click)="navigate('pageName')" ion-button block>Go to Another Page</button> -->

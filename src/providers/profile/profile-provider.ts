@@ -15,11 +15,11 @@ import { AuthProvider } from '../../providers/auth/auth-provider';
 import {UserProvider} from '../../providers/user/user-provider';
 
 @Injectable()
-export class FiredataProvider {
+export class ProfileDataProvider {
   public user: any;
 
   constructor(public afDatabase: AngularFireDatabase, public authProvider: AuthProvider, public userProvider: UserProvider, public afAuth: AngularFireAuth) {
-    console.log('Hello FiredataProvider Provider')
+    console.log('Hello ProfileDataProvider Provider')
   }
 
   writeUserToDatabase(): any {
