@@ -33,10 +33,19 @@ export class ChatPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
     this.messageList = this.messageProvider.getMessageList();
-    this.keyboard.show;
+    //this.keyboard.show();
 
 
 
   }
+newMessage() {
+  this.keyboard.show();
+
+
+
+
 
 }
+
+}
+
