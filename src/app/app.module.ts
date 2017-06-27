@@ -17,19 +17,20 @@ import { AngularFireDatabaseModule }  from 'angularfire2/database';
 import { AuthProvider} from '../providers/auth/auth-provider';
 import { UserProvider} from '../providers/user/user-provider'
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {SignupPage} from '../pages/signup/signup';
 import {LoginPage} from '../pages/login/login';
 import {ResetPasswordPage} from '../pages/reset-password/reset-password';
-
+import {ChatPage} from '../pages/chat/chat'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfileDataProvider } from '../providers/profile/profile-provider';
 import { MessageProvider } from '../providers/message/message-provider';
-
+import { MessageComponent } from '../components/message/message';
+import {Keyboard } from '@ionic-native/keyboard';
 export const firebaseConfig = {
   apiKey: "AIzaSyDKTk6VjHbMofnmH_oUOaAbU1hQxoxQSA0",
   authDomain: "jabberdawg.firebaseapp.com",
@@ -42,12 +43,13 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     SignupPage,
+    ChatPage,
     LoginPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -60,12 +62,13 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     SignupPage,
+    ChatPage,
     LoginPage,
     ResetPasswordPage
+
   ],
   providers: [
     StatusBar,
@@ -74,7 +77,11 @@ export const firebaseConfig = {
     AuthProvider,
     UserProvider,
     ProfileDataProvider,
-    MessageProvider
+    MessageProvider,
+    MessageComponent,
+    Keyboard
+
+
   ]
 })
 export class AppModule {}

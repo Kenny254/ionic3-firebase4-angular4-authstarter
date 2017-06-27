@@ -25,7 +25,9 @@ export class HomePage {
   constructor(
     public authProvider: AuthProvider,
     public userProvider: UserProvider,
-    private nav: NavController
+    private nav: NavController,
+
+
     )
   {
 
@@ -57,6 +59,7 @@ export class HomePage {
     // No guarantee this will fire, if its cached it will use that.
     console.log('ionViewDidLoad - Home Page');
     // this is the magic code :D
+
   }
 
   ionViewWillEnter(){

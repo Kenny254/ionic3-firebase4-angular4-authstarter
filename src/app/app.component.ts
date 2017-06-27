@@ -14,9 +14,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireAuth} from "angularfire2/auth";
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { ChatPage} from '../pages/chat/chat'
 import { Observable } from "rxjs/Observable";
 import * as firebase from 'firebase/app';
+import { MessageComponent } from '../components/message/message';
 @Component({
   templateUrl: 'app.html'
 })
@@ -31,6 +32,7 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     public afAuth: AngularFireAuth
+
 
     ) {
     this.user = afAuth.authState;
